@@ -106,4 +106,13 @@ int main()
       }
     }
   }  
-}   
+   
+
+  printf("the resultant is\n");
+  while(k<=n1)
+  {
+    
+    printf("%d\n",matrix1[k].value);
+    k++;
+  }
+}  
