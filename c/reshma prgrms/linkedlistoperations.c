@@ -1,4 +1,4 @@
-//malavika 337 linked list operations
+
 #include<stdio.h>
 #include<stdlib.h>
 struct node

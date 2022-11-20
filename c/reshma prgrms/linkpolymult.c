@@ -1,4 +1,4 @@
-//malavika 337 r3b polynomial multiplication linked list
+
 #include<stdio.h>
 #include<stdlib.h>
 

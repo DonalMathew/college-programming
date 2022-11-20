@@ -1,10 +1,10 @@
-//malavika 337 linked list polynomial addn
+
 #include<stdio.h>
 #include<stdlib.h>
 
 struct node
 {
-    int coef,exp;
+    int coef,x_exp,y_exp;
     struct node *next;
 };
 
@@ -20,10 +20,11 @@ struct node *ReadPoly()
     scanf("%d",&n);
     for(i=1;i<=n;i++)
     {
-        printf("enter the coefficient and exponent of term\n");
+        printf("enter the coefficient and exponent of x and y\n");
         new=(struct node *)malloc(sizeof(struct node));
         scanf("%d",&new->coef);
-        scanf("%d",&new->exp);
+        scanf("%d",&new->x_exp);
+        scanf("%d",&new->y_exp);
         new->next=NULL;
         if(head==NULL)
         {
@@ -49,45 +50,67 @@ struct node *ReadPoly()
             ptr=head;
             while(ptr->next !=NULL)
             {
-                printf("%dx^%d +",ptr->coef,ptr->exp);
+                printf("%dx^%dy^%d + ",ptr->coef,ptr->x_exp,ptr->y_exp);
                 ptr=ptr->next;
             }
-            printf("%dx^%d",ptr->coef,ptr->exp);
+            printf("%dx^%dy^%d",ptr->coef,ptr->x_exp,ptr->y_exp);
         }
     }
-    struct node *AddPoly()
+//add polynomials
+struct node *AddPoly()
     {
         struct node *new,*P,*Q,*R,*head=NULL;
         P=Phead;
         Q=Qhead;
         while(P!=NULL && Q!=NULL)
         {
-            if(P->exp==Q->exp)
+            if(P->x_exp==Q->x_exp&&P->y_exp==Q->y_exp)
             {
                 new=(struct node*)malloc(sizeof(struct node));
                 new->coef=P->coef+Q->coef;
-                new->exp=P->exp;
+                new->x_exp=P->x_exp;
+                new->y_exp=P->y_exp;
                 new->next=NULL;
                 P=P->next;
                 Q=Q->next;
             }
-            else if(P->exp>Q->exp)
+            else if(P->x_exp>Q->x_exp)
             {
                 new=(struct node*)malloc(sizeof(struct node));
                 new->coef=P->coef;
-                new->exp=P->exp;
+                new->x_exp=P->x_exp;
+                new->y_exp=P->y_exp;
                 new->next=NULL;
                 P=P->next;
             }
-            else
+            else if(P->x_exp<Q->x_exp)
             {
                 new=(struct node*)malloc(sizeof(struct node));
                 new->coef=Q->coef;
-                new->exp=Q->exp;
+                new->x_exp=Q->x_exp;
+                new->y_exp=Q->y_exp;
                 new->next=NULL;
                 Q=Q->next;
             }
-             if(head==NULL)
+            else if(P->y_exp>Q->y_exp)
+            {
+                new=(struct node*)malloc(sizeof(struct node));
+                new->coef=P->coef;
+                new->x_exp=P->x_exp;
+                new->y_exp=P->y_exp;
+                new->next=NULL;
+                P=P->next;
+            }
+            else 
+            {
+                new=(struct node*)malloc(sizeof(struct node));
+                new->coef=Q->coef;
+                new->x_exp=Q->x_exp;
+                new->y_exp=Q->y_exp;
+                new->next=NULL;
+                Q=Q->next;
+            }
+            if(head==NULL)
                 {
                     head=new;
                     R=head;
@@ -98,11 +121,12 @@ struct node *ReadPoly()
                     R=new;
                 }
         }
-        while(P!=NULL)
+    while(P!=NULL)
         {
             new=(struct node *)malloc(sizeof(struct node));
             new->coef=P->coef;
-            new->exp=P->exp;
+            new->x_exp=P->x_exp;
+            new->y_exp=P->y_exp;
             new->next=NULL;
             if(head==NULL)
             {
@@ -120,7 +144,8 @@ struct node *ReadPoly()
         {
             new=(struct node *)malloc(sizeof(struct node));
             new->coef=Q->coef;
-            new->exp=Q->exp;
+            new->x_exp=Q->x_exp;
+            new->y_exp=Q->y_exp;
             new->next=NULL;
             if(head==NULL)
             {
