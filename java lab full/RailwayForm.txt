@@ -1,0 +1,72 @@
+/* RAILWAY FORM USING SWING 
+Donal Mathew P.T, R3A */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class Railway extends JFrame implements ActionListener {
+    JLabel name_label = new JLabel("Name");
+    JLabel age_label = new JLabel("Age");
+    JLabel date_label = new JLabel("Date");
+    JLabel type_label = new JLabel("Type");
+    JLabel train_no_label = new JLabel("Train NO");
+    JLabel source_label = new JLabel("Source");
+    JLabel des_label = new JLabel("Destination");
+    JLabel mobile_label = new JLabel("Mobile NO");
+    JTextField name_field = new JTextField(20);
+    JTextField age_field = new JTextField(20);
+    JTextField date_field = new JTextField(20);
+    JTextField type_field = new JTextField(20);
+    JTextField source_field = new JTextField(20);
+    JTextField des_field = new JTextField(20);
+    JTextField mobile_field = new JTextField(20);
+    JTextField train_no_field = new JTextField(20);
+    JButton sub = new JButton("Submit");
+    JButton res = new JButton("Reset");
+    JFrame master = new JFrame();
+    JFrame display = new JFrame();
+    JTextArea dis = new JTextArea(200,150);
+    Railway(){
+        master.setTitle("Book Your tickets ");
+        master.setLayout(new GridLayout(9,2));
+        master.add(name_label); master.add(name_field);
+        master.add(age_label); master.add(age_field);
+        master.add(mobile_label); master.add(mobile_field);
+        master.add(source_label); master.add(source_field);
+        master.add(des_label);master.add(des_field); 
+        master.add(date_label); master.add(date_field);
+        master.add(train_no_label); master.add(train_no_field);
+        master.add(type_label); master.add(type_field);
+        master.add(sub); master.add(res);
+        sub.addActionListener(this);res.addActionListener(this);
+        master.setVisible(true);master.setSize(400, 400);
+        master.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        display.setTitle("Registration Detials");
+        dis.setFont(new Font("Arial",Font.BOLD,15));
+        display.add(dis);display.setSize(300, 200);
+        display.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource() == sub){
+            String data = "Detials: \n";
+            String data1 = "Name: "+name_field.getText()+"\n"+"Age: "+age_field.getText() +"\n";
+            String data2 = "Mobile No: "+mobile_field.getText()+"\n"+"Source:"+source_field.getText() +"\n";
+            String data3 = "Destination: "+des_field.getText()+"\n"+"Date: "+date_field.getText() +"\n";
+            String data4 = "Train NO: "+train_no_field.getText()+"\n"+"Train type: "+type_field.getText()+"\n"; 
+            dis.setText(data+data1+data2+data3+data4);
+            display.setVisible(true);dis.setEditable(false);
+        }
+        else if (e.getSource() == res){
+            String reset = "";
+            name_field.setText(reset);age_field.setText(reset);
+            mobile_field.setText(reset);source_field.setText(reset);
+            des_field.setText(reset);date_field.setText(reset);
+            train_no_field.setText(reset);type_field.setText(reset); 
+        }
+    }
+}
+public class RailwayLogin{
+    public static void main(String args[]){
+        new Railway();
+    }
+}

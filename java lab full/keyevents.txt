@@ -1,0 +1,36 @@
+/* KEY EVENTS, 
+Donal Mathew P.T, R3A */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class KeyListenerExecuter extends JFrame implements KeyListener{
+    JLabel label;
+    JTextArea area;
+    KeyListenerExecuter(){
+        label = new JLabel();
+        label.setBounds(20,100 ,50,20);
+        area = new JTextArea();
+        area.setBounds(20,80,300,300);
+        add(label);
+        add(area);
+        area.addKeyListener(this);
+        setLayout(new FlowLayout());
+        setSize(300,200);
+        setVisible(true);
+    }
+    public void keyPressed(KeyEvent e){
+        label.setText("KEY PRESSED");
+    }
+    public void keyReleased(KeyEvent e){
+        label.setText("KEY RELEASED");
+    }
+    public void keyTyped(KeyEvent e){
+        label.setText("KEY TYPED");
+    }
+}
+public class KeyEvents{
+    public static void main(String args[]) {
+        new KeyListenerExecuter();
+    }
+}

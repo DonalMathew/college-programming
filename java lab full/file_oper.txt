@@ -1,0 +1,51 @@
+/* FILE OPERATIONS, 
+Donal Mathew P.T, R3A */
+
+import java.util.*;
+import java.io.*;
+public class File_oper{
+    public static void main(String args[])throws IOException{
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the name of the File to be created in .txt format");
+        String name = sc.nextLine();
+        try{
+            File f = new File(name);
+            if(f.createNewFile())
+                System.out.println("File creation Successfull");
+            else
+                System.out.println("File existing");
+        }catch(IOException e){
+            System.out.println("Error occured");
+        }
+        System.out.print("Enter text to be written: ");
+        String s = sc.nextLine();
+        FileWriter o = new FileWriter(name);
+        System.out.println("File writting!!!");
+        try{
+            char c[] = new char[s.length()];
+            s.getChars(0,s.length(),c,0);
+            o.write(c);
+            o.close();
+        } catch(IOException e){
+            System.out.println("Error occured");
+        }
+        System.out.println("File Reading!!!");
+        try{
+            FileReader fr = new FileReader(name);
+            int c;
+            do{
+                c = fr.read();
+                if(c!=-1)
+                    System.out.print((char)c);
+            }while(c!=-1);
+            fr.close();
+        } catch(IOException e){
+            System.out.println("Error occured");
+        }
+        finally{
+            File f = new File(name);
+            f.delete();
+            System.out.println("\nFile deleted");
+        }
+    }
+}

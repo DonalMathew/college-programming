@@ -1,0 +1,37 @@
+/* MOUSE EVENTS, 
+Donal Mathew P.T, R3A */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class MouseListenerExecuter extends Frame implements MouseListener{
+    JLabel label ;
+    MouseListenerExecuter(){
+        label = new JLabel();
+        add(label);
+        setLayout(new FlowLayout());
+        setSize(300,200);
+        addMouseListener(this);
+        setVisible(true);
+    }
+    public void mouseClicked(MouseEvent e){
+        label.setText("MOUSE CLICKED");
+    }
+    public void mouseEntered(MouseEvent e){
+        label.setText("MOUSE ENTERED");
+    }
+    public void  mouseExited(MouseEvent e){
+        label.setText("MOUSE EXITED");
+    } 
+    public void mousePressed(MouseEvent e){
+        label.setText("MOUSE PRESSED");
+    }
+    public void  mouseReleased(MouseEvent e){
+        label.setText("MOUSE RELEASED");
+    }
+}
+class MouseEvents{
+    public static void main(String args[]){
+        new MouseListenerExecuter();
+    }
+}

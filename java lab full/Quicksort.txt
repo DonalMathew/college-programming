@@ -1,0 +1,46 @@
+/* QUICK SORT, 
+Donal Mathew P.T, R3A */
+
+import java.util.Scanner;
+public class QuickSort {
+    int partition(int A[],int low,int high){
+        int i,j,pivot,temp;
+        pivot = A[low];
+        i = low;j = high;
+        while(i<j){
+            if(A[i] <= pivot) i++;
+            if(A[j] > pivot) j--;
+            if(i < j) {
+                temp = A[i];
+                A[i] = A[j];
+                A[j] = temp;
+            }    
+        }
+        temp = A[low];
+        A[low] = A[j];
+        A[j] = temp;
+        return(j);
+    }
+    void sort(int A[], int low, int high){
+		if (low < high)
+		{
+			int loc = partition(A, low, high);
+			sort(A, low, loc-1);
+			sort(A,loc+1, high);
+		}
+	}
+    public static void main(String args[]){
+        int A[] = new int [10];
+        System.out.print("Enter size: ");
+        Scanner s = new Scanner (System.in);
+        int n = s.nextInt();
+        System.out.println("Enter Array: ");
+        for(int i = 0;i<n;i++)
+            A[i] = s.nextInt();
+        QuickSort obj = new QuickSort();
+        obj.sort(A,0,n-1);
+        for(int i = 0; i < n; i++){
+            System.out.print(A[i] + "\t");
+        }
+    }
+}
